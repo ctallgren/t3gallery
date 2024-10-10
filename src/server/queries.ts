@@ -5,6 +5,7 @@ import { images } from "./db/schema";
 import { and, eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
 import analyticsServerClient from "./analytics";
+import { revalidatePath } from "next/cache";
 
 export async function getMyImages() {
   const user = auth();
@@ -48,6 +49,5 @@ export async function deleteImage(id: number) {
       imageId: id,
     },
   });
-
   redirect("/");
 }
